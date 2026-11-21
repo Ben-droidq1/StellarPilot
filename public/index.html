@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10191c">
+    <title>Stellar Signal — Read-only market data</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Stellar Signal home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>stellar<span class="brand-light">signal</span></span>
+      </a>
+      <span class="mode"><span class="mode-dot"></span> READ-ONLY MODE</span>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">STELLAR NETWORK · HORIZON</p>
+        <h1>Market signals,<br><span>without the noise.</span></h1>
+        <p class="intro-copy">Explore public Stellar trades, order books, and asset information. No wallet connection, keys, or transactions.</p>
+      </section>
+
+      <form class="query-card" id="query-form">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DATA QUERY</p>
+            <h2>Choose what to inspect</h2>
+          </div>
+          <span class="network-badge">PUBLIC MAINNET</span>
+        </div>
+
+        <label class="field field-wide">
+          <span>Stellar account address <span class="optional">for recent trades</span></span>
+          <input name="address" autocomplete="off" spellcheck="false" placeholder="G...">
+        </label>
+
+        <div class="asset-pair">
+          <fieldset>
+            <legend>SELLING ASSET</legend>
+            <label class="field">
+              <span>Asset code</span>
+              <input name="sellingCode" value="XLM" autocomplete="off">
+            </label>
+            <label class="field">
+              <span>Issuer <span class="optional">blank for XLM</span></span>
+              <input name="sellingIssuer" autocomplete="off" spellcheck="false" placeholder="G...">
+            </label>
+          </fieldset>
+          <span class="pair-arrow" aria-hidden="true">↔</span>
+          <fieldset>
+            <legend>BUYING ASSET</legend>
+            <label class="field">
+              <span>Asset code</span>
+              <input name="buyingCode" value="USDC" autocomplete="off">
+            </label>
+            <label class="field">
+              <span>Issuer <span class="optional">verify before use</span></span>
+              <input name="buyingIssuer" autocomplete="off" spellcheck="false" placeholder="G...">
+            </label>
+          </fieldset>
+        </div>
+
+        <div class="form-footer">
+          <p>Asset issuers are not pre-filled. Verify the code and issuer yourself.</p>
+          <button type="submit" id="refresh-button">
+            <span>Load market data</span><span aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </form>
+
+      <section class="results" aria-live="polite">
+        <div class="results-heading">
+          <div>
+            <p class="eyebrow">LIVE FROM HORIZON</p>
+            <h2>Network snapshot</h2>
+          </div>
+          <span id="last-updated" class="updated">Waiting for query</span>
+        </div>
+
+        <div class="result-grid">
+          <article class="panel panel-trades">
+            <div class="panel-heading">
+              <div><p class="eyebrow">ACCOUNT ACTIVITY</p><h3>Recent trades</h3></div>
+              <span class="panel-index">01</span>
+            </div>
+            <div class="panel-content" id="trades-panel">
+              <p class="empty-state">Enter an account address and load data.</p>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">STELLAR DEX</p><h3>Order book</h3></div>
+              <span class="panel-index">02</span>
+            </div>
+            <div class="panel-content" id="orderbook-panel">
+              <p class="empty-state">Choose both assets to inspect the order book.</p>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">ASSET PROFILE</p><h3>Supply &amp; holders</h3></div>
+              <span class="panel-index">03</span>
+            </div>
+            <div class="panel-content" id="asset-panel">
+              <p class="empty-state">Enter a verified credit-asset issuer.</p>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">ISSUER DETAILS</p><h3>Home domain</h3></div>
+              <span class="panel-index">04</span>
+            </div>
+            <div class="panel-content" id="issuer-panel">
+              <p class="empty-state">Issuer domain and Stellar TOML status will appear here.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Stellar Signal</span>
+      <span>Public network data only · Not financial advice</span>
+    </footer>
+  </body>
+</html>

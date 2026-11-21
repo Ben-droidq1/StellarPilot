@@ -1,0 +1,14 @@
+{
+  "records": [
+    {
+      "id": "fixture-trade-1",
+      "ledger_close_time": "2025-01-01T00:00:00Z",
+      "base_asset_type": "native",
+      "counter_asset_type": "credit_alphanum4",
+      "counter_asset_code": "DEMO",
+      "price": "0.1000000",
+      "base_amount": "10.0000000",
+      "counter_amount": "1.0000000"
+    }
+  ]
+}
